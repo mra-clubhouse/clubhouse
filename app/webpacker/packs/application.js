@@ -3,9 +3,15 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
 import "channels"
-
-Rails.start()
-
 import "controllers"
+import CableReady from "cable_ready"
+import mrujs from "mrujs"
+import { CableCar } from "mrujs/plugins"
+
+mrujs.start({
+    plugins: [
+        new CableCar(CableReady)
+    ]
+})
+
