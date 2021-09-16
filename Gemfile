@@ -7,6 +7,7 @@ gem 'rails', '~> 6.1.4'
 gem 'puma', '~> 5.0'
 gem 'webpacker', '~> 5.4'
 gem 'pg', '~> 1.2.3'
+gem 'devise'
 
 gem 'hiredis'
 gem 'redis', '>= 4.0', require: ['redis', 'redis/connection/hiredis']
