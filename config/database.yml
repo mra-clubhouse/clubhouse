@@ -2,8 +2,10 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch('CLUBHOUSE_DB_USERNAME', 'clubhouse') %>
-  password: <%= ENV['CLUBHOUSE_DB_PASSWORD'] %>
+  host: <%= ENV.fetch("CLUBHOUSE_DB_HOST", "localhost") %>
+  port: <%= ENV.fetch("CLUBHOUSE_DB_PORT", 5432) %>
+  username: <%= ENV.fetch("CLUBHOUSE_DB_USERNAME", "clubhouse") %>
+  password: <%= ENV.fetch("CLUBHOUSE_DB_PASSWORD", "") %>
 
 development:
   <<: *default
