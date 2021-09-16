@@ -1,0 +1,24 @@
+%nav.navbar
+  .container
+    .navbar-brand
+      .navbar-item
+        %a.title.is-primary.is-4{ href: root_path }
+          Clubhouse
+
+    .navbar-menu
+      .navbar-start
+        %a.navbar-item{ href: posts_path }
+          Posts
+        %a.navbar-item{ href: messages_path }
+          Chat
+
+      .navbar-end
+        .navbar-item
+          .buttons
+            - if user_signed_in?
+              = link_to "Log out", destroy_user_session_path, method: :delete, class: 'button is-outlined is-danger'
+              - if current_user.admin
+                -# = link_to "Admin", admin_root_url, class: 'button is-outlined is-info'
+            - else
+              = link_to "Sign up", new_user_registration_path, class: 'button is-outlined is-success'
+              = link_to "Login", new_user_session_path, class: 'button is-outlined is-info'

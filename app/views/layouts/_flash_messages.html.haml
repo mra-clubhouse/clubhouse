@@ -1,0 +1,6 @@
+#flash
+  - [{ type: "notice", css_class: "is-info" }, { type: "alert", css_class: "is-danger" }].each do |alert|
+    - if flash.send(alert[:type]).present?
+      .flash.animate-hide
+        %p.notification{ class: "#{alert[:type]} #{alert[:css_class]}" }
+          = send(alert[:type])
