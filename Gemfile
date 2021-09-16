@@ -12,6 +12,8 @@ gem 'hiredis'
 gem 'redis', '>= 4.0', require: ['redis', 'redis/connection/hiredis']
 gem 'sidekiq'
 
+gem 'cable_ready', '5.0.0.pre3'
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
