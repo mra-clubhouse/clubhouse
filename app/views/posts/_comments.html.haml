@@ -1,0 +1,5 @@
+%h3 Comments
+
+- @post.comments.each do |comment|
+  %strong= comment.user.name
+  %p= comment.body
