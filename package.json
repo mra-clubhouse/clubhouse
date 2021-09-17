@@ -2,6 +2,7 @@
   "name": "clubhouse",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@hotwired/turbo": "^7.0.0-rc.4",
     "@rails/actioncable": "^6.0.0",
     "@rails/webpacker": "5.4.3",

@@ -10,7 +10,10 @@ gem 'puma', '~> 5.0'
 gem 'webpacker', '~> 5.4'
 gem 'pg', '~> 1.2.3'
 
-gem 'devise'
+# gem 'devise'
+gem "devise", github: "ghiculescu/devise", branch: "error-code-422" # https://github.com/heartcombo/devise/pull/5340 not yet merged
+gem "responders", github: "heartcombo/responders" # https://github.com/heartcombo/responders/pull/223 not yet released
+
 gem 'ransack'
 gem 'pagy', '~> 3.5'
 

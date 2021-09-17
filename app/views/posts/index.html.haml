@@ -1,25 +1,28 @@
-%h1 Listing posts
+.has-background-light
+  .container
 
-%table
-  %thead
-    %tr
-      %th Title
-      %th Description
-      %th User
-      %th
-      %th
-      %th
+    .navbar.has-background-light
+      .navbar-start
+      .navbar-end
+        .navbar-item
+          = link_to 'New Post', new_post_path, class: 'button is-success'
 
-  %tbody
     - @posts.each do |post|
-      %tr
-        %td= post.title
-        %td= post.body
-        %td= post.user.name
-        %td= link_to 'Show', post
-        %td= link_to 'Edit', edit_post_path(post)
-        %td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Post', new_post_path
+      .card.mb-5
+        .card-content
+          = link_to post do
+            %h2.title.is-5= post.title
+          %p
+            %span.tag.is-normal.is-link.mt-3.mb-3.mr-3
+              = post.user.username
+            %span.icon-text.mt-3
+              %span.icon
+                %i.far.fa-comment
+              %span
+                = post.comments.count
+                replies
+          %p= post.body
+        -#%footer.card-footer
+        -#  %p= link_to 'Show', post
+        -#  %p= link_to 'Edit', edit_post_path(post)
+        -#  %p= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }

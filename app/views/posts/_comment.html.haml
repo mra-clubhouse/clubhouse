@@ -1,0 +1,8 @@
+.card.mb-5
+  .card-content
+    %h2.title.is-4
+      = comment.user.username
+    %p.mb-3
+      = comment.created_at.strftime('%B %e')
+    %p
+      = comment.body

@@ -1,23 +1,12 @@
-%h1 Listing messages
+.has-background-light
+  .container
+    #messages
+      - @messages.each do |message|
+        = render partial: "message", locals: { message: message }
 
-%table
-  %thead
-    %tr
-      %th Body
-      %th User
-      %th
-      %th
-      %th
-
-  %tbody
-    - @messages.each do |message|
-      %tr
-        %td= message.body
-        %td= message.user
-        %td= link_to 'Show', message
-        %td= link_to 'Edit', edit_message_path(message)
-        %td= link_to 'Destroy', message, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-
-= link_to 'New Message', new_message_path
+    = form_with model: Message.new, data: { remote: "true" } do |f|
+      .field
+        = f.label :body, class: "label"
+        = f.text_area :body, class: "input textarea", rows: 4
+      .actions
+        = f.submit 'Submit', class: "button is-link"

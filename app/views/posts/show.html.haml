@@ -1,19 +1,21 @@
-%p#notice= notice
+.courses.has-background-light
+  .container
+    .card.mb-5
+      .card-content
+        %h2.title.is-4.mb-1
+          = @post.title
+        %p
+          %span.tag.is-normal.is-link.mt-3.mb-3.mr-3
+            = @post.user.username
+          %span.mb-3
+            = @post.created_at.strftime('%B %e')
+        %p
+          = @post.body
 
-%p
-  %b Title:
-  = @post.title
-%p
-  %b Body:
-  = @post.body
-%p
-  %b User:
-  = @post.user.name
+    = link_to 'Edit', edit_post_path(@post)
+    \|
+    = link_to 'Back', posts_path
 
-= link_to 'Edit', edit_post_path(@post)
-\|
-= link_to 'Back', posts_path
-
-%hr
-
-= render partial: "comments"
+  %hr
+  .container
+    = render partial: "comments"

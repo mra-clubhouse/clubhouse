@@ -1,6 +1,7 @@
-#flash
+#flashes
   - [{ type: "notice", css_class: "is-info" }, { type: "alert", css_class: "is-danger" }].each do |alert|
     - if flash.send(alert[:type]).present?
-      .flash.animate-hide
+      .flash{"data-controller": "flash"}
         %p.notification{ class: "#{alert[:type]} #{alert[:css_class]}" }
           = send(alert[:type])
+          %button.delete.mt-3.mr-3{"data-action": "click->flash#close"}

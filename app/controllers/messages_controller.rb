@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.all
+    @messages = Message.all.includes(:user)
   end
 
   # GET /messages/1
@@ -22,9 +22,11 @@ class MessagesController < ApplicationController
   # POST /messages
   def create
     @message = Message.new(message_params)
+    @message.user = current_user
 
     if @message.save
-      redirect_to @message, notice: 'Message was successfully created.'
+      render operations: cable_car.
+        append("#messages", partial("messages/message", locals: { message: @message }))
     else
       render :new
     end
@@ -53,6 +55,6 @@ class MessagesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def message_params
-      params.require(:message).permit(:body, :user_id)
+      params.require(:message).permit(:body)
     end
 end

@@ -8,10 +8,10 @@ import "controllers"
 import CableReady from "cable_ready"
 import mrujs from "mrujs"
 import { CableCar } from "mrujs/plugins"
+import * as Turbo from "@hotwired/turbo"
 
-mrujs.start({
-    plugins: [
-        new CableCar(CableReady)
-    ]
-})
+window.Turbo = Turbo
 
+mrujs.start({ plugins: [new CableCar(CableReady)] })
+
+import "@fortawesome/fontawesome-free/css/all.css";

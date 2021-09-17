@@ -1,5 +1,14 @@
-%h3 Comments
+%h2.title.is-h2 Comments
 
-- @post.comments.each do |comment|
-  %strong= comment.user.name
-  %p= comment.body
+#comments
+  - @post.comments.each do |comment|
+    = render partial: "comment", locals: { comment: comment }
+
+= form_with model: [@post, @post.comments.build], data: { remote: "true" } do |f|
+  = f.hidden_field :post_id, value: @post.id
+  .field
+    = f.label :body
+    = f.text_area :body
+  .actions
+    = f.submit 'Submit'
+

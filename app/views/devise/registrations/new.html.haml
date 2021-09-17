@@ -13,12 +13,9 @@
             = f.email_field :email, autocomplete: "email", class: 'input'
           .field
             = f.label :password, class: 'label'
-            - if @minimum_password_length
-              %em
-                (#{@minimum_password_length} characters minimum)
             = f.password_field :password, autocomplete: "new-password", class: 'input'
           .field
-            = f.label :password_confirmation
+            = f.label :password_confirmation, class: 'label'
             = f.password_field :password_confirmation, autocomplete: "new-password", class: 'input'
           .actions
             = f.submit "Sign up", class: 'button is-link'

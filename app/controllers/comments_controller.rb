@@ -22,9 +22,12 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
+    @comment.user = current_user
 
     if @comment.save
-      redirect_to @comment, notice: 'Comment was successfully created.'
+      render operations: cable_car.
+        append("#comments", partial("posts/comment", locals: { comment: @comment })).
+        replace("#flashes", partial("layouts/flashes", locals: { flashes: flash }))
     else
       render :new
     end
@@ -53,6 +56,6 @@ class CommentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comment_params
-      params.require(:comment).permit(:body, :user_id, :post_id)
+      params.require(:comment).permit(:body, :post_id)
     end
 end

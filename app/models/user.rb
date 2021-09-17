@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :messages
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :rememberable, :validatable
 
   validates_presence_of :username, :email
   validates_uniqueness_of :username, :email
