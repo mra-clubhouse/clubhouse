@@ -4,9 +4,11 @@
       - @messages.each do |message|
         = render partial: "message", locals: { message: message }
 
-    = form_with model: Message.new, data: { remote: "true" } do |f|
+    #typing
+
+    = form_with model: Message.new do |f|
       .field
-        = f.label :body, class: "label"
-        = f.text_area :body, class: "input textarea", rows: 4
+        = f.text_area :body, class: "input textarea", rows: 4, data: { reflex: 'input->MessageReflex#typing' }
       .actions
-        = f.submit 'Submit', class: "button is-link"
+        %a.button.is-success{ data: { reflex: 'click->MessageReflex#send' } }
+          Send

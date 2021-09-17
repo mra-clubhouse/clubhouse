@@ -1,0 +1,6 @@
+- if user.present?
+  %p.animate-flashing
+    %b
+      ="@#{user.username}"
+    %span.has-text-grey
+      is typing...
