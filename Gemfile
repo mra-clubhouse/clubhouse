@@ -21,7 +21,8 @@ gem 'hiredis'
 gem 'redis', '>= 4.0', require: ['redis', 'redis/connection/hiredis']
 gem 'sidekiq'
 
-gem 'cable_ready', '5.0.0.pre3'
+gem 'stimulus_reflex', '~> 3.5.0.pre2'
+gem 'cable_ready', '5.0.0.pre2'
 
 gem 'haml-rails'
 

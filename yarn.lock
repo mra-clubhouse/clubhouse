@@ -916,7 +916,7 @@
     mkdirp "^1.0.4"
     rimraf "^3.0.2"
 
-"@rails/actioncable@^6.0.0":
+"@rails/actioncable@>= 6.0", "@rails/actioncable@^6.0.0":
   version "6.1.4"
   resolved "https://registry.yarnpkg.com/@rails/actioncable/-/actioncable-6.1.4.tgz#c3c5a9f8302c429af9722b6c50ab48049016d2a3"
   integrity sha512-0LmSKJTuo2dL6BQ+9xxLnS9lbkyfz2mBGeBnQ2J7o9Bn0l0q+ZC6VuoZMZZXPvABI4QT7Nfknv5WhfKYL+boew==
@@ -1678,10 +1678,10 @@ bytes@3.1.0:
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-3.1.0.tgz#f6cf7933a360e0588fa9fde85651cdc7f805d1f6"
   integrity sha512-zauLjrfCG+xvoyaqLoV8bLVXXNGC4JqlxFCutSDWA6fJrTo2ZuvLYTqZ7aHBLZSMOopbzwv8f+wZcVzfVTI2Dg==
 
-cable_ready@^5.0.0-pre3:
-  version "5.0.0-pre3"
-  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.0-pre3.tgz#d36bb9648aead748dfdf0f46dfb489799733f330"
-  integrity sha512-jFjTJ/K/AiVIgjKr63qXGzp9xZOt2/2UyjVpkMkSzFyDHlYILOwnK4WofGwBKS6tXwDZMfohbIzW/p+LKbrlgA==
+cable_ready@5.0.0-pre2:
+  version "5.0.0-pre2"
+  resolved "https://registry.yarnpkg.com/cable_ready/-/cable_ready-5.0.0-pre2.tgz#c3589ebfe28a10db3998ae3711d31a072be53bfb"
+  integrity sha512-/Ql2e/Hz0kRRKzzz06sMXFm3+/qacYqSHfWkdt1CcsI7I6OOOhHzPAgY8VS+zqa/6+ggjWoPqHyi8Hr6j/0O6w==
   dependencies:
     morphdom "^2.6.1"
 
@@ -6231,6 +6231,14 @@ stimulus@^2.0.0:
   dependencies:
     "@stimulus/core" "^2.0.0"
     "@stimulus/webpack-helpers" "^2.0.0"
+
+stimulus_reflex@3.5.0-pre2:
+  version "3.5.0-pre2"
+  resolved "https://registry.yarnpkg.com/stimulus_reflex/-/stimulus_reflex-3.5.0-pre2.tgz#ae831b557ca808a9b922bf09556837e2084099ff"
+  integrity sha512-yT8tj0VZj3lX4oA0pXfliLLExbwAuMQbIlOEXf2egtcxEOmWZ9Kc92/kT/NUkl+fVIJfR8wgEuvRFH3ECXHv5w==
+  dependencies:
+    "@rails/actioncable" ">= 6.0"
+    cable_ready "5.0.0-pre2"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
