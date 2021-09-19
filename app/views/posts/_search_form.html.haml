@@ -1,0 +1,13 @@
+= search_form_for @q, class: "is-flex", data: { controller: "search", action: "submit->search#submit" } do |f|
+  .field.mr-2.mb-0
+    = f.text_field :title_or_body_cont, class: 'input', placeholder: 'Search posts', "data-action": "input->search#livesearch"
+  .field.mr-2.mb-0
+    .select
+      = f.select :user_username_eq, User.pluck(:username), { include_blank: 'All users' },
+        data: { action: 'change->search#submit' }
+
+%button.button.is-danger.is-outlined{ data: { controller: "search", action: 'click->search#clear' } }
+  %span.icon
+    %i.fas.fa-times
+  %span
+    Clear search

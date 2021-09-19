@@ -87,3 +87,9 @@ body {
 .navbar.is-fullwidth {
   width: 100%;
 }
+
+// Bulma Overrides.
+
+.select select::placeholder, .textarea::placeholder, .input::placeholder {
+  color: rgba(54, 54, 54, 0.75);
+}

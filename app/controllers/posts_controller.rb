@@ -4,7 +4,11 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = Post.all.order(:created_at).reverse_order
+    pp "LOAD POSTS!"
+    pp params
+    @q = Post.all.includes(:user).order(:created_at).reverse_order.ransack(params[:q])
+    @posts = @q.result
+    pp @posts.count
   end
 
   # GET /posts/1

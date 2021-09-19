@@ -2,19 +2,18 @@
 
 class MessageReflex < ApplicationReflex
   def send
-    return if params[:message][:body].blank?
+    return if no_message?
 
     @message = Message.new(message_params)
     @message.user_id = current_user.id
 
     if @message.save
       broadcast_new_message
-      # flash[:notification] = "Message was successfully created."
-    else
-      # flash[:alert] = "Message sending failed."
     end
 
     update_typing_feedback("")
+
+    morph :nothing
   end
 
   def typing
@@ -24,23 +23,20 @@ class MessageReflex < ApplicationReflex
   end
 
   def load_more(options)
-    pp "LOAD MORE!"
-    pp options[:timestamp]
-    pp options[:limit]
-    pp options[:last_id]
-    # - Figure out last timestamp (send from client?)
-    # - Fetch next X records older than that timestamp
-    # - Render them and kick into #messages
-
     @messages = Message.where("created_at < ?", Time.at(options[:timestamp].to_i)).
       order(:created_at).reverse_order.limit(options[:limit].to_i).load
 
-    # pp @messages.any?
-    # pp @messages.count
+    broadcast_load_more(options)
 
-    chain = cable_ready["messages"]
+    morph :nothing
+  end
 
-    chain.outer_html(
+  private
+
+  def broadcast_load_more(options)
+    response = cable_ready["messages"]
+
+    response.outer_html(
       selector: "#intersector",
       html: render(partial: "messages/message", collection: @messages, as: :message)
     ).scroll_into_view(
@@ -48,18 +44,16 @@ class MessageReflex < ApplicationReflex
       block: "nearest"
     ) if @messages.any?
 
-    chain.insert_adjacent_html(
+    response.insert_adjacent_html(
       selector: "#messages",
       position: "beforeend",
       html: render(partial: "messages/intersector")
     ) if @messages.count == options[:limit].to_i
 
-    chain.remove(selector: "#intersector") if @messages.none?
+    response.remove(selector: "#intersector") if @messages.none?
 
-    chain.broadcast
+    response.broadcast
   end
-
-  private
 
   def broadcast_new_message
     cable_ready["messages"].
@@ -91,6 +85,10 @@ class MessageReflex < ApplicationReflex
 
   def typing?
     params[:message][:body].present?
+  end
+
+  def no_message?
+    params[:message][:body].blank?
   end
 
   def message_params
