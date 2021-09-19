@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   include CableReady::Broadcaster
 
   add_flash_types :success

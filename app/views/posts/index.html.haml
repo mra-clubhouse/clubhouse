@@ -1,4 +1,4 @@
-.has-background-light
+.has-background-light.mb-5
   .container
 
     .level.mt-4.mb-4
@@ -13,3 +13,5 @@
             %span New Post
 
     = render partial: "posts", locals: { posts: @posts }
+
+    = render partial: 'shared/pagination', locals: { pagy: @pagy } if @pagy.pages > 1

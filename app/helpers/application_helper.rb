@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def flash_types
     [
       { type: "notice", css_class: "is-info", icon: "fas fa-info-circle" },

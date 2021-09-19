@@ -4,11 +4,8 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    pp "LOAD POSTS!"
-    pp params
     @q = Post.all.includes(:user).order(:created_at).reverse_order.ransack(params[:q])
-    @posts = @q.result
-    pp @posts.count
+    @pagy, @posts = pagy(@q.result, items: 10, page: @page)
   end
 
   # GET /posts/1
