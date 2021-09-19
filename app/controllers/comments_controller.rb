@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
   # GET /comments
@@ -25,20 +26,23 @@ class CommentsController < ApplicationController
     @comment.user = current_user
 
     if @comment.save
+      flash.now[:success] = 'Comment was successfully created.'
+
       render operations: cable_car.
         append("#comments", partial("posts/comment", locals: { comment: @comment })).
-        replace("#flashes", partial("layouts/flashes", locals: { flashes: flash }))
+        replace("#flashes", partial("layouts/flashes", locals: { flashes: flash })).
+        set_value(selector: "#comment_body", value: "")
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: 'Comment was successfully updated.'
+      redirect_to @comment, success: 'Comment was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

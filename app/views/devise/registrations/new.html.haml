@@ -1,7 +1,7 @@
 .section.has-background-light
   .container
     .columns.is-centered
-      .column.is-one-third
+      .column.is-half
         %h2.title Sign up
         = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           = render "devise/shared/error_messages", resource: resource

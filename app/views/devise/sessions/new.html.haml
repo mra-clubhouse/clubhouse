@@ -1,10 +1,10 @@
 .section.has-background-light
   .container
     .columns.is-centered
-      .column.is-one-third
+      .column.is-half
         %h2.title Log in
         = form_for resource, as: resource_name, url: session_path(resource_name),
-          data: { remote: "true" } do |f|
+          data: { remote: "true", type: "text/html" } do |f|
           .field
             = f.label :email, class: 'label'
             = f.email_field :email, autofocus: true, autocomplete: "email", class: 'input'

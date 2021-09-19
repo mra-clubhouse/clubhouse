@@ -1,8 +1,14 @@
 .card.mb-5
   .card-content
-    %h2.title.is-4
-      = comment.user.username
-    %p.mb-3
-      = comment.created_at.strftime('%B %e')
-    %p
-      = comment.body
+    .media
+      .media-left.mr-2
+        %span.icon.is-large
+          %i.fas.fa-user-circle.is-size-2
+      .media-content
+        %p.has-text-weight-bold.is-size-3
+          = comment.user.username
+        -#%p.has-text-grey
+        -#  = comment.created_at.strftime('%B %e')
+    .content
+      %p
+        = comment.body

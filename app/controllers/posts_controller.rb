@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
@@ -25,18 +26,18 @@ class PostsController < ApplicationController
     @post.user = current_user
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to post_path(@post), success: 'Post was successfully created.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to post_path(@post), success: 'Post was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

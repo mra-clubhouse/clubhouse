@@ -1,6 +1,12 @@
-.card.mb-5
+.card.mb-5{ id: dom_id(message), "data-timestamp": "#{message.created_at.to_i}" }
   .card-content
+    .level.mb-3
+      .level-left
+        %span.icon.mr-2
+          %i.fas.fa-lg.fa-user-circle
+        %span.is-size-5.has-text-weight-bold.mr-3{style: "padding-bottom: 0.1em"}
+          = message.user.username
+        %span.has-text-grey-light
+          = message.created_at.strftime("%d %B, %k:%M")
     %p
-      %span.tag.is-normal.is-link.mt-3.mb-3.mr-3
-        = message.user.username
-    %p= message.body
+      = message.body

@@ -1,9 +1,10 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
   # GET /messages
   def index
-    @messages = Message.all.includes(:user)
+    @messages = Message.all.includes(:user).order(:created_at).reverse_order.limit(10)
   end
 
   # GET /messages/1
@@ -28,16 +29,16 @@ class MessagesController < ApplicationController
       render operations: cable_car.
         append("#messages", partial("messages/message", locals: { message: @message }))
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /messages/1
   def update
     if @message.update(message_params)
-      redirect_to @message, notice: 'Message was successfully updated.'
+      redirect_to @message, success: 'Message was successfully updated.'
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

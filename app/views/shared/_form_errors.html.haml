@@ -1,0 +1,12 @@
+#error_explanation
+  %article.message.is-danger.mb-5
+    .message-header
+      .level
+        %span.icon.ml-2.mr-2
+          %i.fas.fa-exclamation-triangle
+        %span
+          = "#{pluralize(object.errors.count, "error")} prohibited this post from being saved:"
+    .message-body
+      %ul
+        - object.errors.full_messages.each do |message|
+          %li= message

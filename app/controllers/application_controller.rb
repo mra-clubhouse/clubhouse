@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include CableReady::Broadcaster
 
+  add_flash_types :success
+
   before_action :configure_devise_parameters, if: :devise_controller?
 
   private

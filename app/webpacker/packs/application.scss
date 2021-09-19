@@ -23,3 +23,67 @@
   animation: fade-out-hide 0.5s;
 }
 
+@keyframes fade-in-out {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.animate-flashing {
+  animation: fade-in-out 1s infinite;
+}
+
+// On the chat page we need to set the header to position: fixed and set the height on the reset of the page
+// to be height: 100vh, and then it's all good. Not sure how we deal with the rest of the site though
+
+body {
+  &.fixed-height {
+
+  }
+}
+
+.messages-outer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .messages-content {
+    //height: 20em;
+    margin-top: 3.5em;
+    overflow-x: scroll;
+
+    #messages {
+      display: flex;
+      flex-direction: column-reverse;
+
+    }
+  }
+
+  .messages-footer {
+    //height: 13em;
+    form {
+      display: flex;
+    }
+
+    .field {
+      flex-grow: 100;
+    }
+
+    .actions {
+      padding: 0 0 1em 1em;
+    }
+  }
+}
+
+#typing {
+  min-height: 2.5em;
+  padding: 0.5em;
+}
+
+.is-fixed {
+  position: fixed;
+}
+
+.navbar.is-fullwidth {
+  width: 100%;
+}

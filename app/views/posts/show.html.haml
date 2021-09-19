@@ -1,20 +1,28 @@
-.courses.has-background-light
+.has-background-light.pt-3
   .container
     .card.mb-5
       .card-content
-        %h2.title.is-4.mb-1
-          = @post.title
-        %p
-          %span.tag.is-normal.is-link.mt-3.mb-3.mr-3
+        .level
+          %h2.title.is-3.mb-1
+            = @post.title
+          - if @post.user == current_user
+            = link_to edit_post_path(@post) do
+              %button.button.is-link.is-outlined
+                %span.icon
+                  %i.far.fa-edit
+                %span
+                  Edit
+        %p.mt-3.mb-3
+          %span.tag.is-info.is-light.is-medium.mr-3
+            %span.icon.mr-1
+              %i.fas.fa-user
             = @post.user.username
-          %span.mb-3
+          %span.tag.is-info.is-light.is-medium.mr-3
+            %span.icon.mr-1
+              %i.far.fa-calendar-alt
             = @post.created_at.strftime('%B %e')
-        %p
+        %p.is-size-5
           = @post.body
-
-    = link_to 'Edit', edit_post_path(@post)
-    \|
-    = link_to 'Back', posts_path
 
   %hr
   .container

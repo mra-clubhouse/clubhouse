@@ -1,14 +1,22 @@
-.has-background-light
+- content_for(:navbar_classes){ "is-fixed is-fullwidth" }
+
+.has-background-light.is-flex{style: "height: 100vh"}
   .container
-    #messages
-      - @messages.each do |message|
-        = render partial: "message", locals: { message: message }
+    .messages-outer
+      .messages-content{"data-controller": "scrolldown", style: "background-color: #8acddd"}
+        #messages.p-4
+          = render partial: "message", collection: @messages, as: :message
 
-    #typing
+          = render partial: "intersector"
 
-    = form_with model: Message.new do |f|
-      .field
-        = f.text_area :body, class: "input textarea", rows: 4, data: { reflex: 'input->MessageReflex#typing' }
-      .actions
-        %a.button.is-success{ data: { reflex: 'click->MessageReflex#send' } }
-          Send
+      .messages-footer.mb-5
+        #typing
+
+        = form_with model: Message.new do |f|
+          .field
+            = f.text_area :body, id: "message_input", class: "input textarea", rows: 2, data: { reflex: 'input->MessageReflex#typing' }
+          .actions
+            %button.button.is-success{ data: { reflex: 'click->MessageReflex#send' } }
+              %span.icon
+                %i.far.fa-paper-plane
+              %span Send

@@ -11,17 +11,24 @@
       .card.mb-5
         .card-content
           = link_to post do
-            %h2.title.is-5= post.title
-          %p
-            %span.tag.is-normal.is-link.mt-3.mb-3.mr-3
+            %h2.title.is-5
+              = post.title
+          %p.mt-3.mb-3
+            %span.tag.is-info.is-light.is-medium.mr-3
+              %span.icon.mr-1
+                %i.fas.fa-user
               = post.user.username
-            %span.icon-text.mt-3
-              %span.icon
+            %span.tag.is-info.is-light.is-medium.mr-3
+              %span.icon.mr-1
+                %i.far.fa-calendar-alt
+              = post.created_at.strftime('%B %e')
+            %span.tag.is-info.is-light.is-medium.mr-3
+              %span.icon.mr-1
                 %i.far.fa-comment
-              %span
-                = post.comments.count
-                replies
-          %p= post.body
+              = post.comments.count
+              replies
+          -#%p
+          -#  = post.body
         -#%footer.card-footer
         -#  %p= link_to 'Show', post
         -#  %p= link_to 'Edit', edit_post_path(post)
