@@ -26,7 +26,7 @@ export default class extends ApplicationController {
   }
 
   load() {
-    let last_message = document.getElementById("intersector").previousElementSibling
+    let last_message = document.querySelector("#messages .card:last-child")
     let timestamp = last_message.getAttribute("data-timestamp")
     let last_id = last_message.getAttribute("id")
 

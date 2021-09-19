@@ -4,10 +4,10 @@
   .container
     .messages-outer
       .messages-content{"data-controller": "scrolldown", style: "background-color: #8acddd"}
-        #messages.p-4
-          = render partial: "message", collection: @messages, as: :message
+        = render partial: "intersector"
 
-          = render partial: "intersector"
+        #messages.pt-4.pr-4.pl-4
+          = render partial: "message", collection: @messages, as: :message
 
       .messages-footer.mb-5
         #typing

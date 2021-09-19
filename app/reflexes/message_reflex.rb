@@ -34,25 +34,17 @@ class MessageReflex < ApplicationReflex
   private
 
   def broadcast_load_more(options)
-    response = cable_ready["messages"]
-
-    response.outer_html(
-      selector: "#intersector",
-      html: render(partial: "messages/message", collection: @messages, as: :message)
-    ).scroll_into_view(
-      selector: "##{options[:last_id]}",
-      block: "nearest"
-    ) if @messages.any?
-
-    response.insert_adjacent_html(
-      selector: "#messages",
-      position: "beforeend",
-      html: render(partial: "messages/intersector")
-    ) if @messages.count == options[:limit].to_i
-
-    response.remove(selector: "#intersector") if @messages.none?
-
-    response.broadcast
+    if @messages.any?
+      cable_ready["messages"].append(
+        selector: "#messages",
+        html: render(partial: "messages/message", collection: @messages, as: :message)
+      ).scroll_into_view(
+        selector: "##{options[:last_id]}",
+        block: "nearest"
+      ).broadcast
+    else
+      cable_ready["messages"].remove(selector: "#intersector").broadcast
+    end
   end
 
   def broadcast_new_message

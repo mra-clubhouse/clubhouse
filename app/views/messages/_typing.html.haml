@@ -1,5 +1,4 @@
--# We should check that `user != current_user` here so we don't display feedback on *own* typing
-- if user.present?
+- if user != current_user
   %p.animate-flashing
     %b
       ="@#{user.username}"
