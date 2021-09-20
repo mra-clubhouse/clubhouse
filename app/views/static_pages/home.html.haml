@@ -3,10 +3,17 @@
     .columns
       .column
         = image_pack_tag "treehouse.png", class: "treehouse"
-      .column.is-two-fifths
-        %h1.title
-          -#Welcome to Clubhouse
-        %h2.subtitle
+      .column.is-half.is-flex.is-align-items-center
+        = image_pack_tag "cloud.png", class: "cloud"
+        .section.banner-content
+          %h1.title.is-1.has-text-white-bis.has-text-shadow
+            Welcome to Clubhouse
+          %h2.subtitle.is-4.has-text-white-bis.has-text-shadow
+            A place to hang out and chat
+          = link_to new_user_session_path, class: 'button is-success is-large has-text-weight-bold has-text-shadow' do
+            %span.icon
+              %i.fas.fa-door-open
+            %span Climb in
 
 %section.home-footer
 

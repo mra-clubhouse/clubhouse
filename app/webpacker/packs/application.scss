@@ -65,11 +65,23 @@ section.home-banner {
 
   .treehouse {
     height: 100%;
+    z-index: 20;
+    position: relative;
+  }
+
+  .cloud {
+    position: absolute;
+    top: 2em;
+    right: 0;
+    z-index: 10;
+  }
+
+  .banner-content {
+    z-index: 20;
   }
 }
 
 section.home-footer {
-  height: 10em;
   background-color: $grass-green;
   margin-top: 0.7em;
 }
