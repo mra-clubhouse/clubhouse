@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  resources :messages
+  resources :messages, only: [:index, :create]
 end
