@@ -51,7 +51,7 @@
   padding: 0.5em;
 }
 
-section.home-banner {
+.home-banner {
   background-color: $sky-blue;
 
   .columns {
@@ -81,7 +81,31 @@ section.home-banner {
   }
 }
 
-section.home-footer {
+.home-footer {
   background-color: $grass-green;
   margin-top: 0.7em;
+
+  .tile {
+    .is-parent {
+      margin: 1em;
+    }
+
+    .is-child {
+      position: relative;
+      text-align: center;
+      border-top: 0.75em solid $sky-blue;
+      outline: 0.75em solid rgba(0, 0, 0, 0.15);
+      border-radius: 0.5em;
+    }
+
+    .tile-icon {
+      position: absolute;
+      left: 50%;
+      top: -1.25em;
+      font-size: 2.25em;
+      border: 0.25em solid $sky-blue;
+      background-color: darken($sky-blue, 15%);
+      margin-left: -1em;
+    }
+  }
 }

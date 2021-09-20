@@ -16,10 +16,20 @@
 //$warning: $yellow;
 //$danger: $red;
 
-$green: hsl(88, 66%, 47%);
+// Custom colours
 
 $sky-blue: #90daec;
-$grass-green: $green;
+$light-sky-blue: #d5ebf0;
+$grass-green: hsl(88, 66%, 47%);
+
+// Bulma overrides
+
+$green: $grass-green;
+$body-background-color: $light-sky-blue;
+
+$radius: 0.5em;
+$button-focus-box-shadow-size: 0 0 0 0.175em;
+$input-focus-box-shadow-size: $button-focus-box-shadow-size;
 
 @import "bulma/bulma.sass";
 

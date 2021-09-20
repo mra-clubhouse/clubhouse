@@ -1,30 +1,29 @@
-.has-background-light.pt-3
-  .container
-    .card.mb-5
-      .card-content
-        .level
-          %h2.title.is-3.mb-1
-            = @post.title
-          - if @post.user == current_user
-            = link_to edit_post_path(@post) do
-              %button.button.is-link.is-outlined
-                %span.icon
-                  %i.far.fa-edit
-                %span
-                  Edit
-        %p.mt-3.mb-3
-          %span.tag.is-info.is-light.is-medium.mr-3
-            %span.icon.mr-1
-              %i.fas.fa-user
-            = @post.user.username
-          %span.tag.is-info.is-light.is-medium.mr-3
-            %span.icon.mr-1
-              %i.far.fa-calendar-alt
-            = @post.created_at.strftime('%B %e')
-        %p.is-size-5
-          = @post.body
+.container.pt-5
+  .card.mb-5
+    .card-content
+      .level
+        %h2.title.is-3.mb-1
+          = @post.title
+        - if @post.user == current_user
+          = link_to edit_post_path(@post) do
+            %button.button.is-link.is-outlined
+              %span.icon
+                %i.far.fa-edit
+              %span
+                Edit
+      %p.mt-3.mb-3
+        %span.tag.is-info.is-light.is-medium.mr-3
+          %span.icon.mr-1
+            %i.fas.fa-user
+          = @post.user.username
+        %span.tag.is-info.is-light.is-medium.mr-3
+          %span.icon.mr-1
+            %i.far.fa-calendar-alt
+          = @post.created_at.strftime('%B %e')
+      %p.is-size-5
+        = @post.body
 
-  %hr
+.section.has-background-light
   .container
     %h2.title.is-4
       Replies

@@ -4,19 +4,19 @@
   %ul.pagination-list
     %li
       - if pagy.prev
-        %a.pagination-previous{ data: { reflex: 'click->PagyReflex#page', page: pagy.prev } }
+        %a.button.pagination-previous{ data: { reflex: 'click->PagyReflex#page', page: pagy.prev } }
           != pagy_t('pagy.nav.prev')
       - else
-        %a.pagination-previous{:disabled => "disabled"}!= pagy_t('pagy.nav.prev')
+        %a.button.pagination-previous{:disabled => "disabled"}!= pagy_t('pagy.nav.prev')
 
     - pagy.series.each do |item|
       - if item.is_a?(Integer)
         %li
-          %a.pagination-link{ data: { reflex: 'click->PagyReflex#page', page: item } }= item
+          %a.button.pagination-link{ data: { reflex: 'click->PagyReflex#page', page: item } }= item
 
       - elsif item.is_a?(String)
         %li
-          %a.pagination-link.is-current= item
+          %a.button.pagination-link.is-current= item
 
       - elsif item == :gap
         %li
@@ -24,7 +24,7 @@
 
     %li
       - if pagy.next
-        %a.pagination-previous{ data: { reflex: 'click->PagyReflex#page', page: pagy.next } }
+        %a.button.pagination-previous{ data: { reflex: 'click->PagyReflex#page', page: pagy.next } }
           != pagy_t('pagy.nav.next')
       - else
-        %a.pagination-next{:disabled => "disabled"}!= pagy_t('pagy.nav.next')
+        %a.button.pagination-next{:disabled => "disabled"}!= pagy_t('pagy.nav.next')

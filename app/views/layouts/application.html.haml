@@ -1,5 +1,5 @@
 !!!
-%html.has-background-light
+%html
   %head
     %meta{content: "text/html; charset=UTF-8", "http-equiv": "Content-Type"}
     %title Clubhouse
@@ -8,6 +8,7 @@
     = csp_meta_tag
     = stylesheet_pack_tag "application", media: "all", "data-turbolinks-track": "reload"
     = javascript_pack_tag "application", "data-turbolinks-track": "reload"
+    = favicon_pack_tag "treehouse.png"
 
   %body
     = render "layouts/menu"

@@ -10,38 +10,42 @@
             Welcome to Clubhouse
           %h2.subtitle.is-4.has-text-white-bis.has-text-shadow
             A place to hang out and chat
-          = link_to new_user_session_path, class: 'button is-success is-large has-text-weight-bold has-text-shadow' do
-            %span.icon
-              %i.fas.fa-door-open
-            %span Climb in
+          - unless user_signed_in?
+            = link_to new_user_session_path, class: 'button is-success is-large has-text-weight-bold has-text-shadow' do
+              %span.icon
+                %i.fas.fa-door-open
+              %span Climb in
 
-%section.home-footer
+%section.hero.home-footer.pt-6
+  .hero-body
+    .container
+      .tile.is-ancestor
+        .tile.is-parent
+          .tile.is-child.box.homepage-infobox
+            %span.icon.in-circle.tile-icon.has-text-white
+              %i.fas.fa-users
+            .has-text-centered.mt-4.mb-4
+              %h2.title.pb-2
+                Private Forum
+              %p.subtitle
+                Make proposals and hash out the details
 
+        .tile.is-parent
+          .tile.is-child.box.homepage-infobox
+            %span.icon.in-circle.tile-icon.has-text-white
+              %i.far.fa-comments
+            .has-text-centered.mt-4.mb-4
+              %h2.title.pb-2
+                Live Chat
+              %p.subtitle
+                Chat with your teammates in real time
 
--#.section.has-background-light
--#  .container
--#    .tile.is-ancestor
--#      .tile.is-parent.is-4
--#        .tile.is-child.box.homepage-infobox
--#          .section
--#            %span.icon.has-text-info
--#              %i.fa.fa-graduation-cap
--#            %h2.subtitle
--#              Browse courses and seminars
--#            = link_to 'Log in', new_user_session_path, class: 'button is-info is-outlined'
--#      .tile.is-parent.is-4
--#        .tile.is-child.box.homepage-infobox
--#          .section
--#            %span.icon.has-text-info
--#              %i.fa.fa-address-card
--#            %h2.subtitle
--#              Choose a subscription tier
--#            = link_to 'View Subscriptions', "#", class: 'button is-info is-outlined'
--#      .tile.is-parent.is-4
--#        .tile.is-child.box.homepage-infobox
--#          .section
--#            %span.icon.has-text-info
--#              %i.fa.fa-rocket
--#            %h2.subtitle
--#              Sign up and start today
--#            = link_to 'Sign Up', "#", class: 'button is-info is-outlined'
+        .tile.is-parent
+          .tile.is-child.box.homepage-infobox
+            %span.icon.in-circle.tile-icon.has-text-white
+              %i.fas.fa-globe-americas
+            .has-text-centered.mt-4.mb-4
+              %h2.title.pb-2
+                Global Data
+              %p.subtitle
+                Multi-region deployments now available

@@ -6,8 +6,8 @@
       = f.select :user_username_eq, User.pluck(:username), { include_blank: 'All users' },
         data: { action: 'change->search#submit' }
 
-%button.button.is-danger.is-outlined{ data: { controller: "search", action: 'click->search#clear' } }
+%button.button.is-danger{ data: { controller: "search", action: 'click->search#clear' } }
   %span.icon
-    %i.fas.fa-times
+    %i.fas.fa-undo-alt
   %span
     Clear search
