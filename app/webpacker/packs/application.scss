@@ -1,6 +1,6 @@
-@import "bulma/bulma.sass";
-
-//@import "@fortawesome/fontawesome-free/css/all.css";
+@import "../styles/bulma.scss";
+@import "../styles/animations.scss";
+@import "../styles/utility.scss";
 
 #flashes {
   .flash {
@@ -13,35 +13,6 @@
   }
 }
 
-@keyframes fade-out-hide {
-  0%   {opacity: 1; visibility: visible;}
-  99%  {opacity: 0; visibility: visible;}
-  100% {opacity: 0; visibility: hidden;}
-}
-
-.animate-hide-500 {
-  animation: fade-out-hide 0.5s;
-}
-
-@keyframes fade-in-out {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-
-.animate-flashing {
-  animation: fade-in-out 1s infinite;
-}
-
-// On the chat page we need to set the header to position: fixed and set the height on the reset of the page
-// to be height: 100vh, and then it's all good. Not sure how we deal with the rest of the site though
-
-body {
-  &.fixed-height {
-
-  }
-}
-
 .messages-outer {
   display: flex;
   flex-direction: column;
@@ -51,6 +22,7 @@ body {
     //height: 20em;
     margin-top: 3.5em;
     overflow-x: scroll;
+    background-color: $sky-blue;
 
     #messages {
       display: flex;
@@ -60,7 +32,6 @@ body {
   }
 
   .messages-footer {
-    //height: 13em;
     form {
       display: flex;
     }
@@ -80,16 +51,25 @@ body {
   padding: 0.5em;
 }
 
-.is-fixed {
-  position: fixed;
+section.home-banner {
+  background-color: $sky-blue;
+
+  .columns {
+    height: 30em;
+    padding-top: 1em;
+  }
+
+  .column {
+    padding-bottom: 0;
+  }
+
+  .treehouse {
+    height: 100%;
+  }
 }
 
-.navbar.is-fullwidth {
-  width: 100%;
-}
-
-// Bulma Overrides.
-
-.select select::placeholder, .textarea::placeholder, .input::placeholder {
-  color: rgba(54, 54, 54, 0.75);
+section.home-footer {
+  height: 10em;
+  background-color: $grass-green;
+  margin-top: 0.7em;
 }

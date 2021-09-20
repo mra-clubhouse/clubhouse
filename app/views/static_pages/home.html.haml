@@ -1,38 +1,40 @@
-%section.hero.is-medium.homepage-hero
-  .hero-body
-    .container
-      .columns
-        .column
-        .column.is-two-fifths
-          %h1.title
-            Welcome to Clubhouse
-          %h2.subtitle
-            Online courses and seminars made easy
-
-.section.has-background-light
+%section.home-banner
   .container
-    .tile.is-ancestor
-      .tile.is-parent.is-4
-        .tile.is-child.box.homepage-infobox
-          .section
-            %span.icon.has-text-info
-              %i.fa.fa-graduation-cap
-            %h2.subtitle
-              Browse courses and seminars
-            = link_to 'Log in', new_user_session_path, class: 'button is-info is-outlined'
-      .tile.is-parent.is-4
-        .tile.is-child.box.homepage-infobox
-          .section
-            %span.icon.has-text-info
-              %i.fa.fa-address-card
-            %h2.subtitle
-              Choose a subscription tier
-            = link_to 'View Subscriptions', "#", class: 'button is-info is-outlined'
-      .tile.is-parent.is-4
-        .tile.is-child.box.homepage-infobox
-          .section
-            %span.icon.has-text-info
-              %i.fa.fa-rocket
-            %h2.subtitle
-              Sign up and start today
-            = link_to 'Sign Up', "#", class: 'button is-info is-outlined'
+    .columns
+      .column
+        = image_pack_tag "treehouse.png", class: "treehouse"
+      .column.is-two-fifths
+        %h1.title
+          -#Welcome to Clubhouse
+        %h2.subtitle
+
+%section.home-footer
+
+
+-#.section.has-background-light
+-#  .container
+-#    .tile.is-ancestor
+-#      .tile.is-parent.is-4
+-#        .tile.is-child.box.homepage-infobox
+-#          .section
+-#            %span.icon.has-text-info
+-#              %i.fa.fa-graduation-cap
+-#            %h2.subtitle
+-#              Browse courses and seminars
+-#            = link_to 'Log in', new_user_session_path, class: 'button is-info is-outlined'
+-#      .tile.is-parent.is-4
+-#        .tile.is-child.box.homepage-infobox
+-#          .section
+-#            %span.icon.has-text-info
+-#              %i.fa.fa-address-card
+-#            %h2.subtitle
+-#              Choose a subscription tier
+-#            = link_to 'View Subscriptions', "#", class: 'button is-info is-outlined'
+-#      .tile.is-parent.is-4
+-#        .tile.is-child.box.homepage-infobox
+-#          .section
+-#            %span.icon.has-text-info
+-#              %i.fa.fa-rocket
+-#            %h2.subtitle
+-#              Sign up and start today
+-#            = link_to 'Sign Up', "#", class: 'button is-info is-outlined'

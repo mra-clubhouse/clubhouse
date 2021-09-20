@@ -1,0 +1,19 @@
+@keyframes fade-out-hide {
+  0%   {opacity: 1; visibility: visible;}
+  99%  {opacity: 0; visibility: visible;}
+  100% {opacity: 0; visibility: hidden;}
+}
+
+@keyframes fade-in-out {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.animate-hide-500 {
+  animation: fade-out-hide 0.5s;
+}
+
+.animate-flashing {
+  animation: fade-in-out 1s infinite;
+}

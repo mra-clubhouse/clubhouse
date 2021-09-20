@@ -26,3 +26,6 @@ window.addEventListener("ajax:success", () => {
 window.addEventListener("ajax:stopped", () => {
   console.log("ajax:stopped")
 })
+
+const images = require.context('../images', true)
+const imagePath = (name) => images(name, true)

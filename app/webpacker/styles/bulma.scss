@@ -1,0 +1,28 @@
+
+//@import url('https://fonts.googleapis.com/css?family=Nunito:400,700');
+//$family-secondary: "Nunito", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+//$turquoise: hsl(171, 100%, 41%);
+//$blue: hsl(229, 53%, 53%);
+//$cyan: hsl(207, 61%, 53%);
+//$green: hsl(153, 53%, 53%);
+//$yellow: hsl(44, 100%, 77%);
+//$red: hsl(348, 86%, 61%);
+
+//$primary: $turquoise;
+//$link: $blue;
+//$info: $cyan;
+//$success: $green;
+//$warning: $yellow;
+//$danger: $red;
+
+$green: hsl(88, 66%, 47%);
+
+$sky-blue: #90daec;
+$grass-green: $green;
+
+@import "bulma/bulma.sass";
+
+.select select::placeholder, .textarea::placeholder, .input::placeholder {
+  color: bulmaRgba($input-color, 0.75);
+}
