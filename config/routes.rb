@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
 
   resources :posts do
-    resources :comments
+    resources :comments, only: [:create, :update, :destroy]
   end
 
   resources :messages, only: [:index, :create]

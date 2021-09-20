@@ -26,4 +26,8 @@
 
   %hr
   .container
-    = render partial: "comments"
+    %h2.title.is-4
+      Replies
+
+    = render partial: "comments/comments"
+    = render partial: "comments/form"

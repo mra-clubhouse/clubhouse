@@ -1,19 +1,11 @@
-= form_for @comment do |f|
-  - if @comment.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@comment.errors.count, "error")} prohibited this comment from being saved:"
-      %ul
-        - @comment.errors.full_messages.each do |message|
-          %li= message
-
+= form_with model: [@post, @post.comments.build], data: { remote: "true" } do |f|
+  = f.hidden_field :post_id, value: @post.id
   .field
-    = f.label :body
-    = f.text_area :body
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :post
-    = f.text_field :post
+    = f.label :body, "Send a reply", class: "label"
+    = f.text_area :body, class: "input textarea"
   .actions
-    = f.submit 'Save'
+    = button_tag class: "button is-success", type: "submit", name: "commit", value: "Submit" do
+      %span.icon
+        %i.far.fa-paper-plane
+      %span
+        Submit

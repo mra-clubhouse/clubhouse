@@ -2,24 +2,6 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
 
-  # GET /comments
-  def index
-    @comments = Comment.all
-  end
-
-  # GET /comments/1
-  def show
-  end
-
-  # GET /comments/new
-  def new
-    @comment = Comment.new
-  end
-
-  # GET /comments/1/edit
-  def edit
-  end
-
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
@@ -29,7 +11,7 @@ class CommentsController < ApplicationController
       flash.now[:success] = 'Comment was successfully created.'
 
       render operations: cable_car.
-        append("#comments", partial("posts/comment", locals: { comment: @comment })).
+        append("#comments", partial("comments/comment", locals: { comment: @comment })).
         replace("#flashes", partial("layouts/flashes", locals: { flashes: flash })).
         set_value(selector: "#comment_body", value: "")
     else
