@@ -14,7 +14,8 @@
 
         = form_with model: Message.new do |f|
           .field
-            = f.text_area :body, id: "message_input", class: "input textarea", rows: 2, data: { reflex: 'input->MessageReflex#typing' }
+            = f.text_area :body, id: "message_input", class: "input textarea", rows: 2,
+            data: { reflex: "input->MessageReflex#typing", controller: "messagebox" }
           .actions
             %button.button.is-success{ data: { reflex: 'click->MessageReflex#send' } }
               %span.icon
