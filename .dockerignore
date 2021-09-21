@@ -1,6 +1,9 @@
 .git
 .dockerignore
+config/master.key
+config/credentials.yml.enc
 .byebug_history
+.env.local
 log/*
 tmp/*
 public/packs

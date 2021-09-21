@@ -8,6 +8,20 @@ processes = []
 
 [env]
 
+[build]
+  [build.args]
+    RUBY_VERSION = "3.0.2"
+    PG_VERSION = "12"
+    NODE_VERSION = "14"
+    BUNDLER_VERSION = "2.0.2"
+
+[deploy]
+  release_command = "sh /app/docker/post-deploy.sh"
+
+[[statics]]
+  guest_path = "/app/public/packs"
+  url_prefix = "/packs"
+
 [experimental]
   allowed_public_ports = []
   auto_rollback = true

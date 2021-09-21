@@ -54,4 +54,4 @@ RUN BUNDLE_JOBS=3 bundle install
 
 COPY . .
 
-CMD rails s -b 0.0.0.0
+CMD rails s -p 3000 -b 0.0.0.0
