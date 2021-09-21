@@ -1,0 +1,61 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      args:
+        RUBY_VERSION: 3.0.2
+        PG_VERSION: 12
+        NODE_VERSION: 14
+        BUNDLER_VERSION: 2.0.2
+    entrypoint: ["/app/docker/entrypoint.sh"]
+    command: "rails s -p 3000 -b 0.0.0.0"
+    volumes:
+      - .:/app:cached
+      - rails_cache:/app/tmp/cache
+      - packs:/app/public/packs
+    environment:
+      REDIS_URL: redis://redis:6379/
+      CLUBHOUSE_DB_HOST: postgres
+      CLUBHOUSE_DB_USER: clubhouse
+      CLUBHOUSE_DB_PASSWORD: clubhouse
+      BOOTSNAP_CACHE_DIR: /usr/local/bundle/_bootsnap
+    ports:
+      - "3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  postgres:
+    image: postgres:12
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: clubhouse_development
+      POSTGRES_USER: clubhouse
+      POSTGRES_PASSWORD: clubhouse
+    ports:
+      - 5432
+    healthcheck:
+      test: pg_isready -U clubhouse -d clubhouse_development -h 127.0.0.1
+      interval: 5s
+
+  redis:
+    image: redis:6.2.5-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+volumes:
+  postgres:
+  redis:
+  rails_cache:
+  packs:
