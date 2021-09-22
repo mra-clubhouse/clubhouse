@@ -10,6 +10,7 @@ processes = []
   RAILS_ENV = "production"
   NODE_ENV = "development"
   MALLOC_ARENA_MAX = "2"
+  RAILS_LOG_TO_STDOUT = true
   PRIMARY_REGION = "iad"
 
 [build]

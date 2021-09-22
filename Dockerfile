@@ -63,6 +63,6 @@ RUN bundle config --global frozen 1 \
 
 COPY . .
 
-RUN SECRET_KEY_BASE=skip bundle exec rake webpacker:compile
+RUN bundle exec /app/bin/webpack
 
 CMD rails s -p 3000 -b 0.0.0.0

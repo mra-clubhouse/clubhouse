@@ -6,6 +6,7 @@ default: &default
   port: <%= ENV.fetch("CLUBHOUSE_DB_PORT", 5432) %>
   username: <%= ENV.fetch("CLUBHOUSE_DB_USER", "clubhouse") %>
   password: <%= ENV.fetch("CLUBHOUSE_DB_PASSWORD", "clubhouse") %>
+  timeout: 5000
 
 development:
   <<: *default
