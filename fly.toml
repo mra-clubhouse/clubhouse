@@ -9,6 +9,7 @@ processes = []
 [env]
   RAILS_ENV = "production"
   NODE_ENV = "development"
+  PRIMARY_REGION = "iad"
 
 [build]
   [build.args]
