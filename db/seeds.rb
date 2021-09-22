@@ -1,6 +1,10 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 
+# Skip seeding if already seeded. This makes the db:seed task idempotent so we can use
+# db:prepare unconditionally without worrying if the database has been created yet or not.
+return if Message.any?
+
 posts_count = 20
 comments_count = 30
 messages_count = 30

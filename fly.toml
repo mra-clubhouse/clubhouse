@@ -13,7 +13,7 @@ processes = []
     RUBY_VERSION = "3.0.2"
     PG_VERSION = "12"
     NODE_VERSION = "14"
-    BUNDLER_VERSION = "2.0.2"
+    BUNDLER_VERSION = "2.2.22"
 
 [deploy]
   release_command = "sh /app/docker/post-deploy.sh"

@@ -34,5 +34,8 @@ module Clubhouse
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Set hosts
+    config.hosts << ENV.fetch("APP_HOST", "localhost")
   end
 end

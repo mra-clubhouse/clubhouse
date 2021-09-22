@@ -54,4 +54,6 @@ RUN BUNDLE_JOBS=3 bundle install
 
 COPY . .
 
+RUN bundle exec rake webpacker:compile
+
 CMD rails s -p 3000 -b 0.0.0.0
