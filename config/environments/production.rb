@@ -108,7 +108,7 @@ Rails.application.configure do
 
   config.cache_store = :redis_cache_store, {
     driver: :hiredis,
-    url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1"),
+    url: Fly.configuration.regional_redis_url || "redis://localhost:6379/1",
     password: ENV.fetch("REDIS_PASSWORD", "redis"),
     expires_in: 1.day
   }
