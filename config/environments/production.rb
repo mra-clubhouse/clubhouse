@@ -108,8 +108,12 @@ Rails.application.configure do
 
   config.cache_store = :redis_cache_store, {
     driver: :hiredis,
-    url: Fly.configuration.regional_redis_url || "redis://localhost:6379/1",
+    url: "redis://#{ENV['FLY_REGION']}.#{ENV['REDIS_HOST']}/1",
     password: ENV.fetch("REDIS_PASSWORD", "redis"),
     expires_in: 1.day
   }
+
+  config.active_record.database_selector = { delay: 2.seconds }
+  config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
+  config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 end

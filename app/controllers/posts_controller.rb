@@ -1,15 +1,20 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
 
   # GET /posts
   def index
-    @q = Post.all.includes(:user).order(:created_at).reverse_order.ransack(params[:q])
-    @pagy, @posts = pagy(@q.result, items: 10, page: @page)
+    ActiveRecord::Base.connected_to(role: :reading) do
+      @q = Post.all.includes(:user).order(:created_at).reverse_order.ransack(params[:q])
+      @pagy, @posts = pagy(@q.result, items: 10, page: @page)
+    end
   end
 
   # GET /posts/1
   def show
+    ActiveRecord::Base.connected_to(role: :reading) do
+      @post = Post.includes(comments: :user).find(params[:id])
+    end
   end
 
   # GET /posts/new
@@ -51,7 +56,9 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      @post = Post.find(params[:id])
+      ActiveRecord::Base.connected_to(role: :reading) do
+        @post = Post.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.

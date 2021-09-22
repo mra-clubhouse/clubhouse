@@ -23,8 +23,10 @@ class MessageReflex < ApplicationReflex
   end
 
   def load_more(options)
-    @messages = Message.where("created_at < ?", Time.at(options[:timestamp].to_i)).
-      order(:created_at).reverse_order.limit(options[:limit].to_i).load
+    ActiveRecord::Base.connected_to(role: :reading) do
+      @messages = Message.where("created_at < ?", Time.at(options[:timestamp].to_i)).
+        order(:created_at).reverse_order.limit(options[:limit].to_i).load
+    end
 
     broadcast_load_more(options)
 

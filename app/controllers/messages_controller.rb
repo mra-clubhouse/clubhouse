@@ -4,7 +4,9 @@ class MessagesController < ApplicationController
 
   # GET /messages
   def index
-    @messages = Message.all.includes(:user).order(:created_at).reverse_order.limit(10)
+    ActiveRecord::Base.connected_to(role: :reading) do
+      @messages = Message.all.includes(:user).order(:created_at).reverse_order.limit(10)
+    end
   end
 
   # POST /messages
@@ -23,7 +25,9 @@ class MessagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      @message = Message.find(params[:id])
+      ActiveRecord::Base.connected_to(role: :reading) do
+        @message = Message.find(params[:id])
+      end
     end
 
     # Only allow a list of trusted parameters through.
