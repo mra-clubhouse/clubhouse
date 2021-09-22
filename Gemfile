@@ -26,9 +26,10 @@ gem 'cable_ready', '5.0.0.pre2'
 
 gem 'haml-rails'
 
+gem 'faker' # Currently using seed data in "production", so faker can't be in dev/test group
+
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'faker'
 end
 
 group :development do
