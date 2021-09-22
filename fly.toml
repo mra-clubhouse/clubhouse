@@ -9,6 +9,7 @@ processes = []
 [env]
   RAILS_ENV = "production"
   NODE_ENV = "development"
+  MALLOC_ARENA_MAX = "2"
   PRIMARY_REGION = "iad"
 
 [build]
