@@ -49,11 +49,20 @@ RUN gem update --system && \
 RUN mkdir -p /app
 WORKDIR /app
 
+ARG RAILS_ENV="production"
+ENV RAILS_ENV=${RAILS_ENV}
+ARG BUNDLE_WITHOUT="development test"
+ENV BUNDLE_WITHOUT=${BUNDLE_WITHOUT}
+
 COPY Gemfile Gemfile.lock ./
-RUN BUNDLE_JOBS=3 bundle install
+RUN bundle config --global frozen 1 \
+    && bundle install -j4 --retry 3 \
+    && rm -rf /usr/local/bundle/cache/*.gem \
+    && find /usr/local/bundle/gems/ -name "*.c" -delete \
+    && find /usr/local/bundle/gems/ -name "*.o" -delete
 
 COPY . .
 
-RUN bundle exec rake webpacker:compile
+RUN SECRET_KEY_BASE=skip bundle exec rake webpacker:compile
 
 CMD rails s -p 3000 -b 0.0.0.0

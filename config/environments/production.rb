@@ -102,4 +102,14 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  config.action_controller.default_url_options = { host: ENV.fetch("APP_HOST", "localhost"), port: 3000 }
+  config.session_store :cache_store
+
+  config.cache_store = :redis_cache_store, {
+    driver: :hiredis,
+    url: ENV.fetch("REDIS_URL", "redis://localhost:6379/1"),
+    password: ENV.fetch("REDIS_PASSWORD", "redis"),
+    expires_in: 1.day
+  }
 end
