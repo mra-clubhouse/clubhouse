@@ -1,3 +1,5 @@
+# Note; this file isn't used by Fly.io
+
 version: "3"
 services:
   app:

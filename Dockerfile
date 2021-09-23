@@ -1,3 +1,8 @@
+# Rails Dockerfile tricks stolen from:
+# - https://docs.docker.com/samples/rails/
+# - https://evilmartians.com/chronicles/ruby-on-whales-docker-for-ruby-rails-development
+# - https://community.fly.io/t/ruby-on-rails-deployments/341/18
+
 ARG RUBY_VERSION
 FROM ruby:${RUBY_VERSION}-slim-buster
 
