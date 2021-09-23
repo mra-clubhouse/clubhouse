@@ -17,6 +17,12 @@
         .navbar-item
           .buttons
             - if user_signed_in?
+              %span.button.has-text-grey.mb-2.mr-3
+                %span.icon
+                  %i.fas.fa-globe-americas
+                %span
+                  Region:
+                  = display_region
               = link_to destroy_user_session_path, method: :delete, class: 'button is-outlined is-danger' do
                 %span.icon
                   %i.fas.fa-sign-out-alt

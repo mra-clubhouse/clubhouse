@@ -17,4 +17,8 @@ module ApplicationHelper
       tag.span "Submit"
     end
   end
+
+  def display_region
+    ENV.fetch("FLY_REGION", "DEV").upcase
+  end
 end
