@@ -5,12 +5,19 @@
         %h2.title.is-3.mb-1
           = @post.title
         - if @post.user == current_user
-          = link_to edit_post_path(@post) do
-            %button.button.is-link.is-outlined
-              %span.icon
-                %i.far.fa-edit
-              %span
-                Edit
+          .level-right
+            = link_to edit_post_path(@post) do
+              %button.button.is-link.is-outlined.mr-3
+                %span.icon
+                  %i.far.fa-edit
+                %span
+                  Edit
+            = link_to post_path(@post), method: :delete do
+              %button.button.is-danger.is-outlined
+                %span.icon
+                  %i.far.fa-trash-alt
+                %span
+                  Delete
       %p.mt-3.mb-3
         %span.tag.is-info.is-light.is-medium.mr-3
           %span.icon.mr-1
