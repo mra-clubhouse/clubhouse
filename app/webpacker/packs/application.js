@@ -17,14 +17,7 @@ mrujs.start({ plugins: [new CableCar(CableReady)] })
 import "@fortawesome/fontawesome-free/css/all.css";
 
 window.addEventListener("ajax:complete", () => {
-  console.log("ajax:complete")
   document.querySelector("input[type=submit]:disabled")?.removeAttribute("disabled")
-})
-window.addEventListener("ajax:success", () => {
-  console.log("ajax:success")
-})
-window.addEventListener("ajax:stopped", () => {
-  console.log("ajax:stopped")
 })
 
 const images = require.context('../images', true)
