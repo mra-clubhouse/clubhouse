@@ -1,4 +1,4 @@
-- if user != current_user
+- if user.present?
   %p.animate-flashing
     %b
       ="@#{user.username}"
