@@ -24,7 +24,7 @@ class MessageReflex < ApplicationReflex
 
   def load_more(options)
     ActiveRecord::Base.connected_to(role: :reading) do
-      @messages = Message.where("created_at < ?", Time.at(options[:timestamp].to_i)).
+      @messages = Message.includes(:user).where("created_at < ?", Time.at(options[:timestamp].to_i)).
         order(:created_at).reverse_order.limit(options[:limit].to_i).load
     end
 
