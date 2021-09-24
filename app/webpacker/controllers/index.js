@@ -13,5 +13,5 @@ const context = require.context("controllers", true, /_controller\.js$/)
 application.load(definitionsFromContext(context))
 application.consumer = consumer
 StimulusReflex.initialize(application, { controller, isolate: true })
-StimulusReflex.debug = process.env.RAILS_ENV === 'development'
+StimulusReflex.debug = process.env.NODE_ENV === 'development'
 CableReady.initialize({ consumer })
