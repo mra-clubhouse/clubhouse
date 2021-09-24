@@ -4,6 +4,7 @@ config/master.key
 config/credentials.yml.enc
 .byebug_history
 .env.local
+.env.example
 log/*
 tmp/*
 public/packs
