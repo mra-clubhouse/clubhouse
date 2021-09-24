@@ -37,7 +37,7 @@ class CommentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_comment
-      ActiveRecord::Base.connected_to(role: :reading) do
+      using_regional_replica do
         @comment = Comment.find(params[:id])
       end
     end

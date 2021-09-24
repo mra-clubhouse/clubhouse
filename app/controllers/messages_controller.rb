@@ -2,11 +2,11 @@ class MessagesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_message, only: [:show, :edit, :update, :destroy]
 
+  around_action :using_regional_replica, only: :index
+
   # GET /messages
   def index
-    ActiveRecord::Base.connected_to(role: :reading) do
-      @messages = Message.all.includes(:user).order(:created_at).reverse_order.limit(10)
-    end
+    @messages = Message.all.includes(:user).order(:created_at).reverse_order.limit(10)
   end
 
   # POST /messages
@@ -25,7 +25,7 @@ class MessagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_message
-      ActiveRecord::Base.connected_to(role: :reading) do
+      using_regional_replica do
         @message = Message.find(params[:id])
       end
     end

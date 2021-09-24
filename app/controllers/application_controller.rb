@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include Pagy::Backend
   include CableReady::Broadcaster
+  include MultiDatabase
 
   add_flash_types :success
 

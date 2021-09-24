@@ -2,19 +2,17 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_post, only: [:edit, :update, :destroy]
 
+  around_action :using_regional_replica, only: [:index, :show]
+
   # GET /posts
   def index
-    ActiveRecord::Base.connected_to(role: :reading) do
-      @q = Post.all.includes(:user).order(:created_at).reverse_order.ransack(params[:q])
-      @pagy, @posts = pagy(@q.result, items: 10, page: @page)
-    end
+    @q = Post.all.includes(:user, :comments).order(:created_at).reverse_order.ransack(params[:q])
+    @pagy, @posts = pagy(@q.result, items: 10, page: @page)
   end
 
   # GET /posts/1
   def show
-    ActiveRecord::Base.connected_to(role: :reading) do
-      @post = Post.includes(comments: :user).find(params[:id])
-    end
+    @post = Post.includes(comments: :user).find(params[:id])
   end
 
   # GET /posts/new
@@ -56,7 +54,7 @@ class PostsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
-      ActiveRecord::Base.connected_to(role: :reading) do
+      using_regional_replica do
         @post = Post.find(params[:id])
       end
     end
