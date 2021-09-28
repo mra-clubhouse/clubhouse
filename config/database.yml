@@ -20,12 +20,12 @@ production:
   primary:
     <<: *default
     database: clubhouse_production
-    host: <%= "#{ENV.fetch('PRIMARY_REGION', 'xxx')}.#{ENV.fetch('CLUBHOUSE_DB_HOST', 'xxx')}" %>
+    host: <%= "#{ENV['PRIMARY_REGION']}.#{ENV['CLUBHOUSE_DB_HOST']}" %>
     port: 5432
   primary_replica:
     <<: *default
     database: clubhouse_production
-    host: <%= "#{ENV.fetch('FLY_REGION', 'xxx')}.#{ENV.fetch('CLUBHOUSE_DB_HOST', 'xxx')}" %>
+    host: <%= "#{ENV['FLY_REGION']}.#{ENV['CLUBHOUSE_DB_HOST']}" %>
     port: 5433
     replica: true
     database_tasks: false
